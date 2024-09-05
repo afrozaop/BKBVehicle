@@ -1,0 +1,46 @@
+﻿@model BKBVehicle.Models.VehicleAppModel.DepreciationViewModel
+
+@{
+    ViewBag.Title = "VehicleInfoDetails";
+}
+
+
+<h2 align="middle">Depreciation Info Calculation</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>Car_Info</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("Registration No")
+                @Html.DropDownListFor(model => model.RegistrationNo, new SelectList(ViewBag.RegistrationList, "value", "text"), "Select List",
+                          new { @class = "form-control input-sm", @id = "RegistrationNo" })
+                @*@Html.EditorFor(model => model.RegistrationNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("Select Date")
+
+                @Html.EditorFor(model => model.DateTo, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.DateTo, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                <input type="submit" value="Calculate" class="btn btn-primary" />
+            </div>
+
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@*<script src="~/Scripts/jquery-1.12.4.min.js"></script>*@
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />

@@ -1,0 +1,108 @@
+﻿@model BKBVehicle.Models.VehicleAppModel.RepairViewModel
+
+@{
+    ViewBag.Title = "RepairDetails";
+}
+
+<h2>Repair Details</h2>
+@using (Html.BeginForm("approvalRepair", "Vehicle", FormMethod.Post))
+{
+    <div>
+        <h4>RepairViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model => model.Repairid)
+
+            @Html.HiddenFor(model => model.id)
+            <dt>
+                @Html.DisplayNameFor(model => model.RegistrationNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegistrationNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RepairDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RepairDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RepairType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RepairType)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BillNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BillNo)
+            </dd>
+
+
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrganizationName)
+            </dd>
+
+           
+            <dt>
+                @Html.DisplayNameFor(model => model.UsedBy)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UsedBy)
+            </dd>
+
+            
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Driver)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Driver)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Degination)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Degination)
+            </dd>
+
+            
+        </dl>
+
+        <div class="row">
+            <div class="col-xs-5">
+            </div>
+
+            <div class="col-xs-5">
+                @if ((@Session["UserRoleId"]).ToString() == "1" || (@Session["UserRoleId"]).ToString() == "10")
+                {
+                    <input type="submit" id="btnApprove" name="btn" value="Approve" class="btn btn-success" />
+
+                }
+
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+    </div>
+}
+

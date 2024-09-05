@@ -1,0 +1,1314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BKBVehicleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="bankName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="bankShortName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="bankAddress" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="createdOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="branch_code" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="branch_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="region" Type="varchar" MaxLength="50" />
+          <Property Name="BBCode" Type="varchar" MaxLength="4" />
+          <Property Name="RoutingNo" Type="varchar" MaxLength="50" />
+          <Property Name="agentID" Type="varchar" MaxLength="50" />
+          <Property Name="agentSequence" Type="varchar" MaxLength="50" />
+          <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="Address1" Type="varchar" MaxLength="255" />
+          <Property Name="Address2" Type="varchar" MaxLength="255" />
+          <Property Name="Address3" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="100" />
+          <Property Name="MainOffice" Type="varchar" MaxLength="100" />
+          <Property Name="Status" Type="varchar" MaxLength="5" />
+          <Property Name="StoreNum" Type="varchar" MaxLength="10" />
+          <Property Name="ISO" Type="varchar" MaxLength="10" />
+          <Property Name="ZIP" Type="varchar" MaxLength="10" />
+          <Property Name="POSStatus" Type="varchar" MaxLength="10" />
+          <Property Name="UnitProfileID" Type="varchar" MaxLength="20" />
+          <Property Name="AgentPIN" Type="varchar" MaxLength="20" />
+          <Property Name="RAMS" Type="varchar" MaxLength="25" />
+          <Property Name="Partyno" Type="varchar" MaxLength="25" />
+          <Property Name="HQPartyno" Type="varchar" MaxLength="25" />
+          <Property Name="UnitOffice" Type="varchar" MaxLength="25" />
+          <Property Name="Legacy" Type="nvarchar" MaxLength="20" />
+          <Property Name="bankID" Type="int" Nullable="false" />
+          <Property Name="XPreceivingagentcode" Type="varchar" MaxLength="50" />
+          <Property Name="Acc_ID" Type="int" />
+          <Property Name="branch_name_BN" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="branchbb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="SLNO" Type="float" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="255" />
+          <Property Name="BBcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="BKBcode" Type="nvarchar" MaxLength="255" />
+          <Property Name="brname" Type="nvarchar" MaxLength="255" />
+          <Property Name="Region" Type="nvarchar" MaxLength="255" />
+          <Property Name="PARTICULARS" Type="nvarchar" MaxLength="255" />
+          <Property Name="RegionCode" Type="nvarchar" MaxLength="255" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Car_Details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaxToken" Type="date" />
+          <Property Name="Fitness" Type="date" />
+          <Property Name="RoutePermit" Type="date" />
+          <Property Name="Insurance" Type="date" />
+          <Property Name="Depriciation" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BookValue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="200" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="BillNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="BookValueDate" Type="date" />
+          <Property Name="BrCode" Type="varchar" MaxLength="4" />
+          <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedOn" Type="datetime" />
+          <Property Name="ApprovedStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Car_Info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VehicleType" Type="nvarchar" MaxLength="100" />
+          <Property Name="RegistrationNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="200" />
+          <Property Name="ProductionYear" Type="int" />
+          <Property Name="Color" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChesisNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EngineNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseValue" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="200" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="200" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="OfficeName" Type="nvarchar" MaxLength="150" />
+          <Property Name="BillNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseDate" Type="date" />
+          <Property Name="BrCode" Type="varchar" MaxLength="4" />
+          <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedOn" Type="datetime" />
+          <Property Name="ApprovedStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="countryCode" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="countryLegacyCode" Type="varchar" MaxLength="2" />
+          <Property Name="baseReceiveCurrency" Type="varchar" MaxLength="3" />
+        </EntityType>
+        <EntityType Name="Districts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="district_name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpNameBN" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmpNameEN" Type="nvarchar" MaxLength="100" />
+          <Property Name="PFBN" Type="nvarchar" MaxLength="50" />
+          <Property Name="PFEN" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="CWorkPlace" Type="nvarchar" MaxLength="100" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="JoiningDate" Type="date" />
+          <Property Name="PRLDate" Type="date" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="BankAcc" Type="nvarchar" MaxLength="50" />
+          <Property Name="NID" Type="nvarchar" MaxLength="30" />
+          <Property Name="MobileNum" Type="nvarchar" MaxLength="35" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="TotalTK" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DesignationBN" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Fuel_Details_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FuelDate" Type="date" />
+          <Property Name="FuelConsumptionCost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="100" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="BillNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="FuelType" Type="nvarchar" MaxLength="50" />
+          <Property Name="FuelComsumptionQ" Type="int" />
+          <Property Name="UsedBy" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Driver" Type="nvarchar" MaxLength="4000" />
+          <Property Name="UsedByPF" Type="nvarchar" MaxLength="40" />
+          <Property Name="DriverPF" Type="nvarchar" MaxLength="50" />
+          <Property Name="Degination" Type="nvarchar" MaxLength="200" />
+          <Property Name="Rate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FuelQuantity" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="BrCode" Type="varchar" MaxLength="4" />
+          <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedOn" Type="datetime" />
+          <Property Name="ApprovedStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InputList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="100" />
+          <Property Name="Label" Type="nvarchar" MaxLength="100" />
+          <Property Name="Field" Type="nvarchar" MaxLength="50" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="Position" Type="nvarchar" MaxLength="10" />
+          <Property Name="Grade" Type="int" />
+        </EntityType>
+        <EntityType Name="LoginUser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="userPass" Type="varchar" MaxLength="50" />
+          <Property Name="userName" Type="varchar" MaxLength="100" />
+          <Property Name="userRole" Type="int" Nullable="false" />
+          <Property Name="branch_code" Type="varchar" MaxLength="10" />
+          <Property Name="user_status" Type="varchar" MaxLength="1" />
+          <Property Name="first_login" Type="varchar" MaxLength="1" />
+          <Property Name="makerID" Type="varchar" MaxLength="20" />
+          <Property Name="makerTime" Type="date" />
+          <Property Name="checkerID" Type="varchar" MaxLength="20" />
+          <Property Name="checkerTime" Type="date" />
+          <Property Name="updatedBY" Type="varchar" MaxLength="20" />
+          <Property Name="updateTime" Type="date" />
+          <Property Name="UserMobile" Type="varchar" MaxLength="50" />
+          <Property Name="bankID" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="bigint" />
+        </EntityType>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="main_menu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="menuStatus" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="createdBy" Type="varchar" MaxLength="20" />
+          <Property Name="createdOn" Type="date" />
+        </EntityType>
+        <EntityType Name="Maintenance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationNo" Type="varchar" MaxLength="50" />
+          <Property Name="MaintenanceType" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="MaintenanceDate" Type="date" />
+          <Property Name="MaintenanceParts" Type="nvarchar" MaxLength="100" />
+          <Property Name="MaintenanceCost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Unit" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="UsedBy" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Driver" Type="nvarchar" MaxLength="4000" />
+          <Property Name="UnitQ" Type="int" />
+          <Property Name="UsedByPF" Type="nvarchar" MaxLength="50" />
+          <Property Name="DriverPF" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="BrCode" Type="varchar" MaxLength="4" />
+          <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedOn" Type="datetime" />
+          <Property Name="ApprovedStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="Repairid" />
+          </Key>
+          <Property Name="Repairid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationNo" Type="varchar" MaxLength="50" />
+          <Property Name="RepairType" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="100" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="100" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrganizationName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RepairDate" Type="date" />
+          <Property Name="BrCode" Type="varchar" MaxLength="4" />
+          <Property Name="UsedByPF" Type="nvarchar" MaxLength="50" />
+          <Property Name="DriverPF" Type="nvarchar" MaxLength="50" />
+          <Property Name="UsedBy" Type="nvarchar" MaxLength="400" />
+          <Property Name="Driver" Type="nvarchar" MaxLength="400" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="100" />
+          <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedOn" Type="datetime" />
+          <Property Name="ApprovedStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RepairDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Repairid" Type="int" Nullable="false" />
+          <Property Name="RepairParts" Type="nvarchar" MaxLength="2000" />
+          <Property Name="RepairCost" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_priority" Type="int" />
+          <Property Name="role_description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="RoleMenuMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserRoleId" Type="int" Nullable="false" />
+          <Property Name="SubMenuId" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="main_menu_id" Type="int" Nullable="false" />
+          <Property Name="sub_menu_name" Type="varchar(max)" Nullable="false" />
+          <Property Name="menu_action" Type="varchar(max)" Nullable="false" />
+          <Property Name="menu_controller" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserRegionmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="varchar(max)" Nullable="false" />
+          <Property Name="Region" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Varities_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Label" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Field" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Flag" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK__RepairDet__Repai__51300E55">
+          <End Role="Repair" Type="Self.Repair" Multiplicity="1" />
+          <End Role="RepairDetails" Type="Self.RepairDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repair">
+              <PropertyRef Name="Repairid" />
+            </Principal>
+            <Dependent Role="RepairDetails">
+              <PropertyRef Name="Repairid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankBranch">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="bankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankUser">
+          <End Role="Bank" Type="Self.Bank" Multiplicity="1" />
+          <End Role="LoginUser" Type="Self.LoginUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoginUser">
+              <PropertyRef Name="bankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleMenuMap_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleMenuMapping" Type="Self.RoleMenuMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoleMenuMapping">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleMenuMap_SubMenu">
+          <End Role="SubMenu" Type="Self.SubMenu" Multiplicity="1" />
+          <End Role="RoleMenuMapping" Type="Self.RoleMenuMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubMenu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoleMenuMapping">
+              <PropertyRef Name="SubMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_SMainMenu_Role">
+          <End Role="MainMenu" Type="Self.MainMenu" Multiplicity="1" />
+          <End Role="SubMenu" Type="Self.SubMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubMenu">
+              <PropertyRef Name="main_menu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BKBVehicleModelStoreContainer">
+          <EntitySet Name="Bank" EntityType="Self.Bank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="branchbb" EntityType="Self.branchbb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car_Details" EntityType="Self.Car_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Car_Info" EntityType="Self.Car_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeInfo" EntityType="Self.EmployeeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fuel_Details_Table" EntityType="Self.Fuel_Details_Table" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InputList" EntityType="Self.InputList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginUser" EntityType="Self.LoginUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MainMenu" EntityType="Self.MainMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repair" EntityType="Self.Repair" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepairDetails" EntityType="Self.RepairDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMenuMapping" EntityType="Self.RoleMenuMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubMenu" EntityType="Self.SubMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRegionmapping" EntityType="Self.UserRegionmapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Varities_Table" EntityType="Self.Varities_Table" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__RepairDet__Repai__51300E55" Association="Self.FK__RepairDet__Repai__51300E55">
+            <End Role="Repair" EntitySet="Repair" />
+            <End Role="RepairDetails" EntitySet="RepairDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankBranch" Association="Self.FK_BankBranch">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="Branch" EntitySet="Branch" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankUser" Association="Self.FK_BankUser">
+            <End Role="Bank" EntitySet="Bank" />
+            <End Role="LoginUser" EntitySet="LoginUser" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleMenuMap_Role" Association="Self.fk_RoleMenuMap_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="RoleMenuMapping" EntitySet="RoleMenuMapping" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleMenuMap_SubMenu" Association="Self.fk_RoleMenuMap_SubMenu">
+            <End Role="SubMenu" EntitySet="SubMenu" />
+            <End Role="RoleMenuMapping" EntitySet="RoleMenuMapping" />
+          </AssociationSet>
+          <AssociationSet Name="fk_SMainMenu_Role" Association="Self.fk_SMainMenu_Role">
+            <End Role="MainMenu" EntitySet="MainMenu" />
+            <End Role="SubMenu" EntitySet="SubMenu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BKBVehicleModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bankName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bankShortName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bankAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Branches" Relationship="BKBVehicleModel.FK_BankBranch" FromRole="Bank" ToRole="Branch" />
+          <NavigationProperty Name="LoginUsers" Relationship="BKBVehicleModel.FK_BankUser" FromRole="Bank" ToRole="LoginUser" />
+        </EntityType>
+        <EntityType Name="branchbb">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="SLNO" Type="Double" />
+          <Property Name="BranchName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BBcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BKBcode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="brname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PARTICULARS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RegionCode" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="countryLegacyCode" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="baseReceiveCurrency" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="district_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MainMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="main_menu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menuStatus" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="createdOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SubMenus" Relationship="Self.fk_SMainMenu_Role" FromRole="MainMenu" ToRole="SubMenu" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_priority" Type="Int32" />
+          <Property Name="role_description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RoleMenuMappings" Relationship="Self.fk_RoleMenuMap_Role" FromRole="Role" ToRole="RoleMenuMapping" />
+        </EntityType>
+        <EntityType Name="RoleMenuMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserRoleId" Type="Int32" Nullable="false" />
+          <Property Name="SubMenuId" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="Self.fk_RoleMenuMap_Role" FromRole="RoleMenuMapping" ToRole="Role" />
+          <NavigationProperty Name="SubMenu" Relationship="Self.fk_RoleMenuMap_SubMenu" FromRole="RoleMenuMapping" ToRole="SubMenu" />
+        </EntityType>
+        <EntityType Name="SubMenu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="main_menu_id" Type="Int32" Nullable="false" />
+          <Property Name="sub_menu_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menu_action" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="menu_controller" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MainMenu" Relationship="Self.fk_SMainMenu_Role" FromRole="SubMenu" ToRole="MainMenu" />
+          <NavigationProperty Name="RoleMenuMappings" Relationship="Self.fk_RoleMenuMap_SubMenu" FromRole="SubMenu" ToRole="RoleMenuMapping" />
+        </EntityType>
+        <EntityType Name="UserRegionmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_SMainMenu_Role">
+          <End Role="MainMenu" Type="Self.MainMenu" Multiplicity="1" />
+          <End Role="SubMenu" Type="Self.SubMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainMenu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="SubMenu">
+              <PropertyRef Name="main_menu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleMenuMap_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="RoleMenuMapping" Type="Self.RoleMenuMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoleMenuMapping">
+              <PropertyRef Name="UserRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_RoleMenuMap_SubMenu">
+          <End Role="SubMenu" Type="Self.SubMenu" Multiplicity="1" />
+          <End Role="RoleMenuMapping" Type="Self.RoleMenuMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubMenu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="RoleMenuMapping">
+              <PropertyRef Name="SubMenuId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BKBVehicleEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Banks" EntityType="Self.Bank" />
+          <EntitySet Name="branchbbs" EntityType="Self.branchbb" />
+          <EntitySet Name="countries" EntityType="Self.country" />
+          <EntitySet Name="Districts" EntityType="Self.District" />
+          <EntitySet Name="MainMenus" EntityType="Self.MainMenu" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="RoleMenuMappings" EntityType="Self.RoleMenuMapping" />
+          <EntitySet Name="SubMenus" EntityType="Self.SubMenu" />
+          <EntitySet Name="UserRegionmappings" EntityType="Self.UserRegionmapping" />
+          <AssociationSet Name="fk_SMainMenu_Role" Association="Self.fk_SMainMenu_Role">
+            <End Role="MainMenu" EntitySet="MainMenus" />
+            <End Role="SubMenu" EntitySet="SubMenus" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleMenuMap_Role" Association="Self.fk_RoleMenuMap_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="RoleMenuMapping" EntitySet="RoleMenuMappings" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleMenuMap_SubMenu" Association="Self.fk_RoleMenuMap_SubMenu">
+            <End Role="SubMenu" EntitySet="SubMenus" />
+            <End Role="RoleMenuMapping" EntitySet="RoleMenuMappings" />
+          </AssociationSet>
+          <EntitySet Name="Branches" EntityType="BKBVehicleModel.Branch" />
+          <EntitySet Name="LoginUsers" EntityType="BKBVehicleModel.LoginUser" />
+          <AssociationSet Name="FK_BankBranch" Association="BKBVehicleModel.FK_BankBranch">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="Branch" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BankUser" Association="BKBVehicleModel.FK_BankUser">
+            <End Role="Bank" EntitySet="Banks" />
+            <End Role="LoginUser" EntitySet="LoginUsers" />
+          </AssociationSet>
+          <EntitySet Name="Fuel_Details_Table" EntityType="BKBVehicleModel.Fuel_Details_Table" />
+          <EntitySet Name="Maintenances" EntityType="BKBVehicleModel.Maintenance" />
+          <EntitySet Name="Car_Details" EntityType="BKBVehicleModel.Car_Details" />
+          <EntitySet Name="Car_Info" EntityType="BKBVehicleModel.Car_Info" />
+          <EntitySet Name="EmployeeInfoes" EntityType="BKBVehicleModel.EmployeeInfo" />
+          <EntitySet Name="InputLists" EntityType="BKBVehicleModel.InputList" />
+          <EntitySet Name="Repairs" EntityType="BKBVehicleModel.Repair" />
+          <EntitySet Name="Varities_Table" EntityType="BKBVehicleModel.Varities_Table" />
+          <EntitySet Name="RepairDetails" EntityType="BKBVehicleModel.RepairDetail" />
+          <AssociationSet Name="FK__RepairDet__Repai__51300E55" Association="BKBVehicleModel.FK__RepairDet__Repai__51300E55">
+            <End Role="Repair" EntitySet="Repairs" />
+            <End Role="RepairDetail" EntitySet="RepairDetails" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="branch_code" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="branch_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="region" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BBCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="RoutingNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentSequence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MainOffice" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="StoreNum" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ISO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="POSStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="UnitProfileID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AgentPIN" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="RAMS" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Partyno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="HQPartyno" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="UnitOffice" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Legacy" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="bankID" Type="Int32" Nullable="false" />
+          <Property Name="XPreceivingagentcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Acc_ID" Type="Int32" />
+          <Property Name="branch_name_BN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Bank" Relationship="BKBVehicleModel.FK_BankBranch" FromRole="Branch" ToRole="Bank" />
+        </EntityType>
+        <EntityType Name="LoginUser">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="userPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userRole" Type="Int32" Nullable="false" />
+          <Property Name="branch_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="first_login" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="makerID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="makerTime" Type="DateTime" Precision="0" />
+          <Property Name="checkerID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="checkerTime" Type="DateTime" Precision="0" />
+          <Property Name="updatedBY" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="updateTime" Type="DateTime" Precision="0" />
+          <Property Name="UserMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="bankID" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int64" />
+          <NavigationProperty Name="Bank" Relationship="BKBVehicleModel.FK_BankUser" FromRole="LoginUser" ToRole="Bank" />
+        </EntityType>
+        <Association Name="FK_BankBranch">
+          <End Type="BKBVehicleModel.Bank" Role="Bank" Multiplicity="1" />
+          <End Type="BKBVehicleModel.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="bankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BankUser">
+          <End Type="BKBVehicleModel.Bank" Role="Bank" Multiplicity="1" />
+          <End Type="BKBVehicleModel.LoginUser" Role="LoginUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bank">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LoginUser">
+              <PropertyRef Name="bankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Fuel_Details_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FuelDate" Type="DateTime" Precision="0" />
+          <Property Name="FuelConsumptionCost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="BillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FuelComsumptionQ" Type="Int32" />
+          <Property Name="UsedBy" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Driver" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="UsedByPF" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="DriverPF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Degination" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FuelQuantity" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BrCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ApprovedStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Maintenance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MaintenanceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MaintenanceDate" Type="DateTime" Precision="0" />
+          <Property Name="MaintenanceParts" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MaintenanceCost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="UsedBy" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Driver" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="UnitQ" Type="Int32" />
+          <Property Name="UsedByPF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DriverPF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BrCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ApprovedStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Car_Details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TaxToken" Type="DateTime" Precision="0" />
+          <Property Name="Fitness" Type="DateTime" Precision="0" />
+          <Property Name="RoutePermit" Type="DateTime" Precision="0" />
+          <Property Name="Insurance" Type="DateTime" Precision="0" />
+          <Property Name="Depriciation" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="BookValue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="BillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BookValueDate" Type="DateTime" Precision="0" />
+          <Property Name="BrCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ApprovedStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Car_Info">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VehicleType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationNo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BrandName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Manufacturer" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ProductionYear" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ChesisNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EngineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseValue" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="OfficeName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
+          <Property Name="BrCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ApprovedStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmployeeInfo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNameBN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmpNameEN" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PFBN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PFEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="CWorkPlace" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JoiningDate" Type="DateTime" Precision="0" />
+          <Property Name="PRLDate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BankAcc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNum" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="TotalTK" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DesignationBN" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InputList">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Field" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="Position" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Repair">
+          <Key>
+            <PropertyRef Name="Repairid" />
+          </Key>
+          <Property Name="Repairid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RepairType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrganizationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RepairDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="RepairDetails" Relationship="BKBVehicleModel.FK__RepairDet__Repai__51300E55" FromRole="Repair" ToRole="RepairDetail" />
+          <Property Name="BrCode" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="UsedByPF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DriverPF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UsedBy" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Driver" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedOn" Type="DateTime" Precision="3" />
+          <Property Name="ApprovedStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Varities_Table">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Value" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Field" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Flag" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RepairDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Repairid" Type="Int32" Nullable="false" />
+          <Property Name="RepairParts" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="RepairCost" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Repair" Relationship="BKBVehicleModel.FK__RepairDet__Repai__51300E55" FromRole="RepairDetail" ToRole="Repair" />
+        </EntityType>
+        <Association Name="FK__RepairDet__Repai__51300E55">
+          <End Type="BKBVehicleModel.Repair" Role="Repair" Multiplicity="1" />
+          <End Type="BKBVehicleModel.RepairDetail" Role="RepairDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Repair">
+              <PropertyRef Name="Repairid" />
+            </Principal>
+            <Dependent Role="RepairDetail">
+              <PropertyRef Name="Repairid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BKBVehicleModelStoreContainer" CdmEntityContainer="BKBVehicleEntities">
+          <EntitySetMapping Name="Banks">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Bank">
+              <MappingFragment StoreEntitySet="Bank">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="bankName" ColumnName="bankName" />
+                <ScalarProperty Name="bankShortName" ColumnName="bankShortName" />
+                <ScalarProperty Name="bankAddress" ColumnName="bankAddress" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="branchbbs">
+            <EntityTypeMapping TypeName="BKBVehicleModel.branchbb">
+              <MappingFragment StoreEntitySet="branchbb">
+                <ScalarProperty Name="SLNO" ColumnName="SLNO" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BBcode" ColumnName="BBcode" />
+                <ScalarProperty Name="BKBcode" ColumnName="BKBcode" />
+                <ScalarProperty Name="brname" ColumnName="brname" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="PARTICULARS" ColumnName="PARTICULARS" />
+                <ScalarProperty Name="RegionCode" ColumnName="RegionCode" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countries">
+            <EntityTypeMapping TypeName="BKBVehicleModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="countryCode" ColumnName="countryCode" />
+                <ScalarProperty Name="countryLegacyCode" ColumnName="countryLegacyCode" />
+                <ScalarProperty Name="baseReceiveCurrency" ColumnName="baseReceiveCurrency" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="BKBVehicleModel.District">
+              <MappingFragment StoreEntitySet="Districts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="district_name" ColumnName="district_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainMenus">
+            <EntityTypeMapping TypeName="BKBVehicleModel.MainMenu">
+              <MappingFragment StoreEntitySet="MainMenu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="main_menu" ColumnName="main_menu" />
+                <ScalarProperty Name="menuStatus" ColumnName="menuStatus" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_priority" ColumnName="role_priority" />
+                <ScalarProperty Name="role_description" ColumnName="role_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMenuMappings">
+            <EntityTypeMapping TypeName="BKBVehicleModel.RoleMenuMapping">
+              <MappingFragment StoreEntitySet="RoleMenuMapping">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+                <ScalarProperty Name="SubMenuId" ColumnName="SubMenuId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubMenus">
+            <EntityTypeMapping TypeName="BKBVehicleModel.SubMenu">
+              <MappingFragment StoreEntitySet="SubMenu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="main_menu_id" ColumnName="main_menu_id" />
+                <ScalarProperty Name="sub_menu_name" ColumnName="sub_menu_name" />
+                <ScalarProperty Name="menu_action" ColumnName="menu_action" />
+                <ScalarProperty Name="menu_controller" ColumnName="menu_controller" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRegionmappings">
+            <EntityTypeMapping TypeName="BKBVehicleModel.UserRegionmapping">
+              <MappingFragment StoreEntitySet="UserRegionmapping">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="branch_name_BN" ColumnName="branch_name_BN" />
+                <ScalarProperty Name="Acc_ID" ColumnName="Acc_ID" />
+                <ScalarProperty Name="XPreceivingagentcode" ColumnName="XPreceivingagentcode" />
+                <ScalarProperty Name="bankID" ColumnName="bankID" />
+                <ScalarProperty Name="Legacy" ColumnName="Legacy" />
+                <ScalarProperty Name="UnitOffice" ColumnName="UnitOffice" />
+                <ScalarProperty Name="HQPartyno" ColumnName="HQPartyno" />
+                <ScalarProperty Name="Partyno" ColumnName="Partyno" />
+                <ScalarProperty Name="RAMS" ColumnName="RAMS" />
+                <ScalarProperty Name="AgentPIN" ColumnName="AgentPIN" />
+                <ScalarProperty Name="UnitProfileID" ColumnName="UnitProfileID" />
+                <ScalarProperty Name="POSStatus" ColumnName="POSStatus" />
+                <ScalarProperty Name="ZIP" ColumnName="ZIP" />
+                <ScalarProperty Name="ISO" ColumnName="ISO" />
+                <ScalarProperty Name="StoreNum" ColumnName="StoreNum" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MainOffice" ColumnName="MainOffice" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="agentSequence" ColumnName="agentSequence" />
+                <ScalarProperty Name="agentID" ColumnName="agentID" />
+                <ScalarProperty Name="RoutingNo" ColumnName="RoutingNo" />
+                <ScalarProperty Name="BBCode" ColumnName="BBCode" />
+                <ScalarProperty Name="region" ColumnName="region" />
+                <ScalarProperty Name="branch_name" ColumnName="branch_name" />
+                <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginUsers">
+            <EntityTypeMapping TypeName="BKBVehicleModel.LoginUser">
+              <MappingFragment StoreEntitySet="LoginUser">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="bankID" ColumnName="bankID" />
+                <ScalarProperty Name="UserMobile" ColumnName="UserMobile" />
+                <ScalarProperty Name="updateTime" ColumnName="updateTime" />
+                <ScalarProperty Name="updatedBY" ColumnName="updatedBY" />
+                <ScalarProperty Name="checkerTime" ColumnName="checkerTime" />
+                <ScalarProperty Name="checkerID" ColumnName="checkerID" />
+                <ScalarProperty Name="makerTime" ColumnName="makerTime" />
+                <ScalarProperty Name="makerID" ColumnName="makerID" />
+                <ScalarProperty Name="first_login" ColumnName="first_login" />
+                <ScalarProperty Name="user_status" ColumnName="user_status" />
+                <ScalarProperty Name="branch_code" ColumnName="branch_code" />
+                <ScalarProperty Name="userRole" ColumnName="userRole" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userPass" ColumnName="userPass" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fuel_Details_Table">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Fuel_Details_Table">
+              <MappingFragment StoreEntitySet="Fuel_Details_Table">
+                <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="BrCode" ColumnName="BrCode" />
+                <ScalarProperty Name="FuelQuantity" ColumnName="FuelQuantity" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Degination" ColumnName="Degination" />
+                <ScalarProperty Name="DriverPF" ColumnName="DriverPF" />
+                <ScalarProperty Name="UsedByPF" ColumnName="UsedByPF" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="UsedBy" ColumnName="UsedBy" />
+                <ScalarProperty Name="FuelComsumptionQ" ColumnName="FuelComsumptionQ" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="FuelConsumptionCost" ColumnName="FuelConsumptionCost" />
+                <ScalarProperty Name="FuelDate" ColumnName="FuelDate" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maintenances">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Maintenance">
+              <MappingFragment StoreEntitySet="Maintenance">
+                <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="BrCode" ColumnName="BrCode" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="DriverPF" ColumnName="DriverPF" />
+                <ScalarProperty Name="UsedByPF" ColumnName="UsedByPF" />
+                <ScalarProperty Name="UnitQ" ColumnName="UnitQ" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="UsedBy" ColumnName="UsedBy" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="MaintenanceCost" ColumnName="MaintenanceCost" />
+                <ScalarProperty Name="MaintenanceParts" ColumnName="MaintenanceParts" />
+                <ScalarProperty Name="MaintenanceDate" ColumnName="MaintenanceDate" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="MaintenanceType" ColumnName="MaintenanceType" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car_Details">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Car_Details">
+              <MappingFragment StoreEntitySet="Car_Details">
+                <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="BrCode" ColumnName="BrCode" />
+                <ScalarProperty Name="BookValueDate" ColumnName="BookValueDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="BookValue" ColumnName="BookValue" />
+                <ScalarProperty Name="Depriciation" ColumnName="Depriciation" />
+                <ScalarProperty Name="Insurance" ColumnName="Insurance" />
+                <ScalarProperty Name="RoutePermit" ColumnName="RoutePermit" />
+                <ScalarProperty Name="Fitness" ColumnName="Fitness" />
+                <ScalarProperty Name="TaxToken" ColumnName="TaxToken" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Car_Info">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Car_Info">
+              <MappingFragment StoreEntitySet="Car_Info">
+                <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="BrCode" ColumnName="BrCode" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PurchaseValue" ColumnName="PurchaseValue" />
+                <ScalarProperty Name="EngineNo" ColumnName="EngineNo" />
+                <ScalarProperty Name="ChesisNo" ColumnName="ChesisNo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="ProductionYear" ColumnName="ProductionYear" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="VehicleType" ColumnName="VehicleType" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeInfoes">
+            <EntityTypeMapping TypeName="BKBVehicleModel.EmployeeInfo">
+              <MappingFragment StoreEntitySet="EmployeeInfo">
+                <ScalarProperty Name="DesignationBN" ColumnName="DesignationBN" />
+                <ScalarProperty Name="TotalTK" ColumnName="TotalTK" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MobileNum" ColumnName="MobileNum" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="BankAcc" ColumnName="BankAcc" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PRLDate" ColumnName="PRLDate" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="CWorkPlace" ColumnName="CWorkPlace" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="PFEN" ColumnName="PFEN" />
+                <ScalarProperty Name="PFBN" ColumnName="PFBN" />
+                <ScalarProperty Name="EmpNameEN" ColumnName="EmpNameEN" />
+                <ScalarProperty Name="EmpNameBN" ColumnName="EmpNameBN" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InputLists">
+            <EntityTypeMapping TypeName="BKBVehicleModel.InputList">
+              <MappingFragment StoreEntitySet="InputList">
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Field" ColumnName="Field" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repairs">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Repair">
+              <MappingFragment StoreEntitySet="Repair">
+                <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
+                <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+                <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Driver" ColumnName="Driver" />
+                <ScalarProperty Name="UsedBy" ColumnName="UsedBy" />
+                <ScalarProperty Name="DriverPF" ColumnName="DriverPF" />
+                <ScalarProperty Name="UsedByPF" ColumnName="UsedByPF" />
+                <ScalarProperty Name="BrCode" ColumnName="BrCode" />
+                <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
+                <ScalarProperty Name="OrganizationName" ColumnName="OrganizationName" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="RepairType" ColumnName="RepairType" />
+                <ScalarProperty Name="RegistrationNo" ColumnName="RegistrationNo" />
+                <ScalarProperty Name="Repairid" ColumnName="Repairid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Varities_Table">
+            <EntityTypeMapping TypeName="BKBVehicleModel.Varities_Table">
+              <MappingFragment StoreEntitySet="Varities_Table">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="Field" ColumnName="Field" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepairDetails">
+            <EntityTypeMapping TypeName="BKBVehicleModel.RepairDetail">
+              <MappingFragment StoreEntitySet="RepairDetails">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="RepairCost" ColumnName="RepairCost" />
+                <ScalarProperty Name="RepairParts" ColumnName="RepairParts" />
+                <ScalarProperty Name="Repairid" ColumnName="Repairid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

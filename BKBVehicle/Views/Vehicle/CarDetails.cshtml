@@ -1,0 +1,127 @@
+﻿@model BKBVehicle.Models.VehicleAppModel.CarInfoViewModel
+
+@{
+    ViewBag.Title = "CarDetails";
+}
+
+<h2>CarDetails</h2>
+@using (Html.BeginForm("approvalCar", "Vehicle", FormMethod.Post))
+{
+
+    <div>
+        <h4>CarInfoViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model => model.id)
+            <dt>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VehicleType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.RegistrationNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.RegistrationNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BrandName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BrandName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Manufacturer)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductionYear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ProductionYear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Color)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Color)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ChesisNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ChesisNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.EngineNo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.EngineNo)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PurchaseValue)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PurchaseValue)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OfficeName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OfficeName)
+            </dd>
+
+            
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </dt>
+
+            <dd>
+                @Convert.ToDateTime(Model.PurchaseDate).ToString("dd-MM-yyyy")
+            </dd>
+
+
+        </dl>
+
+
+        <div class="row">
+            <div class="col-xs-5">
+            </div>
+
+            <div class="col-xs-5">
+                @if ((@Session["UserRoleId"]).ToString() == "1" || (@Session["UserRoleId"]).ToString() == "10")
+                {
+                    <input type="submit" id="btnApprove" name="btn" value="Approve" class="btn btn-success" />
+
+                }
+
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+    </div>
+}

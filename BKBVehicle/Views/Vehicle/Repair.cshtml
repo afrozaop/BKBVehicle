@@ -1,0 +1,255 @@
+﻿
+@model BKBVehicle.Models.VehicleAppModel.RepairViewModel
+@{
+    ViewBag.Title = "RepairInfo";
+}
+
+<h2 align="middle">Repair Information Entry</h2>
+<br>
+<h2 align="middle" style="color: red">@TempData["ShowSms"]</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            debugger;
+            var message = validateInput();
+
+            if (message != "true") {
+                alert(message);
+                return false;
+            }
+        });
+    });
+    function validateInput() {
+        debugger;
+        var message = "";
+        var MeetingNo = $("#MeetingNo").val();
+        if (MeetingNo.length == 0) {
+            message = message + "Please input MeetingNo *\n";
+        }
+        var Title = $("#Title").val();
+        if (Title.length == 0) {
+            message = message + "Please input Title *\n";
+        }
+
+        var Date = $("#mDate").val();
+        if (Date.length == 0) {
+            message = message + "Please input Date *\n";
+        }
+
+        var Agendafile = $("#Agendafile").val(); //Bind to the first name with class f-name01
+        if (Agendafile.length == 0) {
+            message = message + "Please select Agendafile*\n";
+        }
+        var ext = Agendafile.split('.').pop().toLowerCase();
+        if ($.inArray(ext, ['pdf', 'docx', 'doc', 'jpg', 'jpeg']) == -1) {
+            message = message + "Invalid Agenda File Type*\n";
+        }
+
+        var i = 1;
+        $('tr.memoRows').each(function () {
+            debugger
+            var department = $(this).find('.RepairParts01').val();
+            if (department.length == 0) {
+                message = message + "Please select Repair Parts at row " + i + "*\n";
+            }
+            var subject = $(this).find('.Quantity01').val();
+            if (subject.length == 0) {
+                message = message + "Please input Quantity at row " + i + "*\n";
+            }
+            var memoFile = $(this).find('.RepairCost01').val();
+            if (memoFile.length == 0) {
+                message = message + "Please input Repair Cost at row " + i + "*\n";
+            }
+            i++;
+        });
+
+        return message.length == 0 ? "true" : message;
+    }
+</script>
+
+@using (Html.BeginForm("Repair", "Vehicle", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.LabelFor(model => model.UsedByPF, "ব্যবহারকারীর পি এফ সূচক নং")
+                    @Html.DropDownListFor(model => model.UsedByPF,
+                        new SelectList(ViewBag.PFLIST, "Value", "Text"),
+                        "Select List",
+                        new { @class = "form-control input-sm", @id = "UsedByPF" })
+                    @Html.ValidationMessageFor(model => model.UsedByPF, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("ব‌্যবহারকারীর নাম")
+                    @Html.EditorFor(model => model.UsedBy, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+                    @Html.ValidationMessageFor(model => model.UsedBy, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("ব‌্যবহারকারীর পদবী")
+                    @Html.EditorFor(model => model.Degination, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Degination, "", new { @class = "text-danger" })
+                </div>
+                <br>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.Label("গাড়ি চালকের পি এফ সূচক নং")
+
+
+                    @Html.DropDownListFor(model => model.DriverPF, new SelectList(ViewBag.DriverPFList, "value", "text"), "Select List",
+            new { @class = "form-control input-sm", @id = "DriverPF" })
+                    @Html.ValidationMessageFor(model => model.DriverPF, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("গাড়ি চালকের নাম")
+
+                    @Html.EditorFor(model => model.Driver, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Driver, "", new { @class = "text-danger" })
+
+
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("গাড়ির নম্বর")
+
+
+                    @Html.DropDownListFor(model => model.RegistrationNo, new SelectList(ViewBag.RegistrationList, "value", "text"), "Select List",
+            new { @class = "form-control input-sm", @id = "RegistrationNo" })
+                    @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger", @id = "pp" })
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+
+                    @Html.Label("তারিখ")
+                    <div class="pp">
+                        @Html.TextBoxFor(m => m.RepairDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+
+                        @*@Html.EditorFor(model => model.RepairDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })*@
+                        @Html.ValidationMessageFor(model => model.RepairDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    @Html.Label("বিলের নম্বর")
+                    <div class="pp">
+                        @Html.EditorFor(model => model.BillNo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.BillNo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                    @Html.Label("প্রতিষ্ঠানের নাম ")
+
+                    @Html.DropDownListFor(model => model.OrganizationName, new SelectList(ViewBag.OrganizationList, "value", "text"), "Select List",
+                         new { @class = "form-control input-sm", @id = "OrganizationName" })
+                    @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <legend style="font-size:15px;font-weight:bold;">মেরামতের তথ‌্য</legend>
+
+    <input type="button" id="addMore" name="addMore" value="Add More" class="form-control btn-primary input-sm addMore01" style="background-color: #07889B; width: 10%; margin-left: 70%; margin-right:6%" />
+
+    <div style="height: 40%; ">
+        <div class="row table-responsive" style="height: 300px; overflow: auto; margin-left: 20%;">
+            <br />
+            <div class="table-holder">
+
+                <table class="table-responsive" id="memoTable">
+
+                    <tr>
+                        <th style="width:0%;text-align:center;">SL No</th>
+                        <th style="width:53%;text-align:center;">মেরামতের যন্ত্রাংশ</th>
+                        <th style="width:22%;text-align:center;">পরিমাণ</th>
+                        <th style="width:53%;text-align:center;">মেরামতের খরচ</th>
+                        <th style="width:6.25%;text-align:center;"></th>
+                    </tr>
+
+                    <tr class="memoRows">
+                        <td><input type="text" id="slNo" value="1" name="slNo" class="form-control input-sm slNo01" readonly /></td>
+                        <td><input type="text" id="RepairParts" name="RepairParts" class="form-control input-sm RepairParts01" /></td>
+                        @*<td><select name="department" id="department" class="form-control input-sm department01" required></select></td>*@
+                        <td><input type="text" id="Quantity" name="Quantity" class="form-control input-sm Quantity01" /></td>
+                        <td><input type="text" id="RepairCost" name="RepairCost" class="form-control input-sm RepairCost01" /></td>
+
+                        <td><h6 color="grey" style="margin-left: 2px">Fixed Row</h6></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-6 col-md-6">
+                <input type="submit" value="submit" id="btnSubmit" class="btn btn-default btn-primary" style="background-color: #07889B" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="~/scripts/up.js"></script>
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#RegistrationNo,#OrganizationName").select2();
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $("#DriverPF").change(function () {
+            $.get("/Vehicle/GetPFList", { name: $("#DriverPF").val() }, function (data) {
+                $("#Driver").empty();
+
+                $.each(data, function (index, row) {
+                    document.getElementById("Driver").value = row.EmpNameBN;
+
+                });
+            });
+        });
+
+        $("#DriverPF").val($("#DriverPF option:selected").val());
+        $("#DriverPF").select2();
+    });
+</script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#UsedByPF").change(function () {
+            $.get("/Vehicle/GetPFList", { name: $("#UsedByPF").val() }, function (data) {
+                $("#UsedBy").empty();
+                $("#Designation").empty();
+                $.each(data, function (index, row) {
+                    document.getElementById("UsedBy").value = row.EmpNameBN;
+                    document.getElementById("Designation").value = row.DesignationBN;
+
+
+                });
+            });
+        });
+
+        $("#UsedByPF").val($("#UsedByPF option:selected").val());
+        $("#UsedByPF").select2();
+    });
+</script>

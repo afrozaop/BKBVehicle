@@ -1,0 +1,147 @@
+﻿
+@model BKBVehicle.Models.VehicleAppModel.RepairViewModel
+@{
+    ViewBag.Title = "Add More Repair Info";
+}
+
+<h2 align="middle" style="color: red">@TempData["ShowSms"]</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            debugger;
+            var message = validateInput();
+
+            if (message != "true") {
+                alert(message);
+                return false;
+            }
+        });
+    });
+    function validateInput() {
+        debugger;
+        var message = "";
+        var MeetingNo = $("#MeetingNo").val();
+        if (MeetingNo.length == 0) {
+            message = message + "Please input MeetingNo *\n";
+        }
+        var Title = $("#Title").val();
+        if (Title.length == 0) {
+            message = message + "Please input Title *\n";
+        }
+
+        var Date = $("#mDate").val();
+        if (Date.length == 0) {
+            message = message + "Please input Date *\n";
+        }
+
+        var Agendafile = $("#Agendafile").val(); //Bind to the first name with class f-name01
+        if (Agendafile.length == 0) {
+            message = message + "Please select Agendafile*\n";
+        }
+        var ext = Agendafile.split('.').pop().toLowerCase();
+        if ($.inArray(ext, ['pdf', 'docx', 'doc', 'jpg', 'jpeg']) == -1) {
+            message = message + "Invalid Agenda File Type*\n";
+        }
+
+        var i = 1;
+        $('tr.memoRows').each(function () {
+            debugger
+            var department = $(this).find('.RepairParts01').val();
+            if (department.length == 0) {
+                message = message + "Please select Repair Parts at row " + i + "*\n";
+            }
+            var subject = $(this).find('.Quantity01').val();
+            if (subject.length == 0) {
+                message = message + "Please input Quantity at row " + i + "*\n";
+            }
+            var memoFile = $(this).find('.RepairCost01').val();
+            if (memoFile.length == 0) {
+                message = message + "Please input Repair Cost at row " + i + "*\n";
+            }
+            i++;
+        });
+
+        return message.length == 0 ? "true" : message;
+    }
+</script>
+
+@using (Html.BeginForm("AddMoreInfo", "Vehicle", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table class="table">
+        <tr>
+            @Html.HiddenFor(model => model.rv.Repairid, new { htmlAttributes = new { @class = "form-control" } })
+            <th>@Html.DisplayNameFor(model => model.rv.RegistrationNo)</th>
+            <td>
+                @Html.DisplayFor(model => model.rv.RegistrationNo)
+                @Html.HiddenFor(model => model.rv.RegistrationNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </td>
+            <th> @Html.DisplayNameFor(model => model.rv.BillNo)</th>
+            <td>
+                @Html.DisplayFor(model => model.rv.BillNo)
+                @Html.HiddenFor(model => model.rv.BillNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </td>
+            <th>@Html.DisplayNameFor(model => model.rv.RepairDate)</th>
+
+            <td>
+                @Html.DisplayFor(model => model.rv.RepairDate)
+                @Html.HiddenFor(model => model.rv.RepairDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </td>
+            <th> @Html.DisplayNameFor(model => model.rv.OrganizationName)</th>
+            <td>
+                @Html.DisplayFor(model => model.rv.OrganizationName)
+                @Html.HiddenFor(model => model.rv.OrganizationName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </td>
+
+        </tr>
+    </table>
+
+
+
+    <legend style="font-size:15px;font-weight:bold;">মেরামতের তথ‌্য</legend>
+
+    <input type="button" id="addMore" name="addMore" value="Add More" class="form-control btn-primary input-sm addMore01" style="background-color: #07889B; width: 10%; margin-left: 70%; margin-right:6%" />
+
+    <div style="height: 40%; ">
+        <div class="row table-responsive" style="height: 300px; overflow: auto; margin-left: 20%;">
+            <br />
+            <div class="table-holder">
+
+                <table class="table-responsive" id="memoTable">
+
+                    <tr>
+                        <th style="width:0%;text-align:center;">SL No</th>
+                        <th style="width:53%;text-align:center;">মেরামতের যন্ত্রাংশ</th>
+                        <th style="width:22%;text-align:center;">পরিমাণ</th>
+                        <th style="width:53%;text-align:center;">মেরামতের খরচ</th>
+                        <th style="width:6.25%;text-align:center;"></th>
+                    </tr>
+
+                    <tr class="memoRows">
+                        <td><input type="text" id="slNo" value="1" name="slNo" class="form-control input-sm slNo01" readonly /></td>
+                        <td><input type="text" id="RepairParts" name="RepairParts" class="form-control input-sm RepairParts01" /></td>
+                        <td><input type="text" id="Quantity" name="Quantity" class="form-control input-sm Quantity01" /></td>
+                        <td><input type="text" id="RepairCost" name="RepairCost" class="form-control input-sm RepairCost01" /></td>
+
+                        <td><h6 color="grey" style="margin-left: 2px">Fixed Row</h6></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-6 col-md-6">
+                <input type="submit" value="Update" id="btnSubmit" class="btn btn-default btn-primary" style="background-color: #07889B" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="~/scripts/up.js"></script>
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />

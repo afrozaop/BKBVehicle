@@ -1,0 +1,85 @@
+﻿
+
+
+@model IEnumerable<BKBVehicle.DataModel.Maintenance>
+@{
+    ViewBag.Title = "MaintenanceInfoList";
+}
+
+<h2 align="middle">Maintenance Info List Details</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+<table class="table table-striped table-bordered" id="search" style="width:100%">
+    <thead>
+        <tr>
+            <th>SL No</th>
+            <th>Registration No</th>
+
+            <th>Date</th>
+            <th>Cost</th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+
+            int i = 0;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(i + 1)
+
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RegistrationNo)
+                    </td>
+
+
+                    <td>
+                        @if (item.MaintenanceDate != null)
+                        {
+                            @item.MaintenanceDate.Value.ToString("dd-MMM-yyyy")
+                        }
+
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaintenanceCost)
+                    </td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "MaintenanceInfoEdit", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "MaintenanceDelete", new { id = item.id }) |
+                        @Html.ActionLink("Details", "MaintenanceDetails", new { id = item.id }) |
+                        
+                    </td>
+                </tr>
+                i = i + 1;
+
+            }
+        }
+    </tbody>
+</table>
+
+<script src="~/scripts/jquery-3.5.1.js"></script>
+<script src="~/scripts/jquery.dataTables.min.js"></script>
+<script src="~/scripts/dataTables.bootstrap4.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#search').DataTable({
+            "lengthMenu": [[-1, 25, 50, 100], ["All", 25, 50, 100]]
+
+        });
+    });
+
+</script>
+
+
+
+
+

@@ -1,0 +1,149 @@
+﻿
+
+
+@model BKBVehicle.Models.VehicleAppModel.Car_DetailsViewModel
+
+@{
+    ViewBag.Title = "VehicleInfoDetails";
+}
+
+
+<h2 align="middle">Vehicle Information Details Entry</h2>
+<br>
+<h2 align="middle" style="color: red">@TempData["ShowSms"]</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>Car_Info</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("গাড়ির নম্বর")
+                @Html.DropDownListFor(model => model.RegistrationNo, new SelectList(ViewBag.RegistrationList, "value", "text"), "Select List",
+                          new { @class = "form-control input-sm", @id = "RegistrationNo" })
+                @*@Html.EditorFor(model => model.RegistrationNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("ট‌্যাক্স টোকেন")
+
+                @Html.EditorFor(model => model.TaxToken, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.TaxToken, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("ফিটনেস")
+
+                @Html.EditorFor(model => model.Fitness, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.Fitness, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+                @Html.Label("রুট পারমিট")
+
+                @Html.EditorFor(model => model.RoutePermit, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.RoutePermit, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+
+                @Html.Label("ইনসুরেন্স")
+
+                @Html.EditorFor(model => model.Insurance, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.Insurance, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("ডেপ্রিসিয়েশন")
+
+                @Html.EditorFor(model => model.Depriciation, new { htmlAttributes = new { @class = "form-control", @id = "Depriciation", @Value ="20",@readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Depriciation, "", new { @class = "text-danger" })
+
+            </div>
+
+
+
+        </div>
+        <div class="row">
+
+
+            <div class="col-md-4">
+                @Html.Label("বুক ভ‌্যালু")
+
+                @Html.EditorFor(model => model.BookValue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookValue, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("বুক ভ‌্যালু তারিখ")
+
+                @Html.EditorFor(model => model.BookValueDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.BookValueDate, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("মন্তব‌্য")
+
+                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+
+        <br>
+        <div class="row">
+
+
+
+            <div class="col-md-offset-6 col-md-6">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@*<div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+@*<script src="~/scripts/jquery-3.6.0.min.js"></script>*@
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@*<script src="~/Scripts/jquery-1.12.4.min.js"></script>*@
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#RegistrationNo").change(function () {
+            $.get("/Vehicle/RegNoList", { name: $("#RegistrationNo").val() }, function (data) {
+                $("#Depriciation").empty();
+                $.each(data, function (index, row) {
+                    document.getElementById("Depriciation").value = row.Depriciation;
+                });
+            });
+        });
+
+        //$("#TaxToken,#Insurance,#RoutePermit,#Fitness,#BookValueDate").datepicker({
+        //    dateFormat: "dd-M-yy"
+        //});
+        //$("#RegistrationNo").val($("#RegistrationNo option:selected").val());
+        //$("#RegistrationNo").select2();
+    });
+</script>

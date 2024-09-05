@@ -1,0 +1,66 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+        .field_set {
+            border-color: #F00;
+            border-style: solid;
+        }
+
+        .scheduler-border {
+            border-color: #F00;
+            border-style: solid;
+        }
+
+        .scheduler-border2 {
+            color: coral;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba( 255, 255, 255, .8 ) url('../../Images/ajax-loader.gif') 50% 50% no-repeat;
+        }
+
+        /* When the body has the loading class, we turn
+        the scrollbar off with overflow:hidden */
+        body.loading .modal {
+            overflow: hidden;
+        }
+        .padtp30{
+            padding-top: 50px;
+        }
+        tfoot {
+           display: table-header-group;
+		}
+		tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+		}
+.padtp25 {
+    padding-top: 25px;
+}
+        /* Anytime the body has the loading class, our
+        modal element will be visible */
+       

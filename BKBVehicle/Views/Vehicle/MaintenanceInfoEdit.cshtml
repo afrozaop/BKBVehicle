@@ -1,0 +1,191 @@
+﻿
+
+
+@model BKBVehicle.Models.VehicleAppModel.MaintenanceViewModel
+
+@{
+    ViewBag.Title = "MaintenanceInfoEdit";
+}
+
+
+<h2 align="middle">Maintenance Information Details</h2>
+<br>
+<h2 align="middle" style="color: red">@TempData["ShowSms"]</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("ব‌্যবহারকারীর পি এফ সূচক নং")
+                @Html.EditorFor(model => model.UsedByPF, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.UsedByPF, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("ব‌্যবহারকারীর নাম")
+                @Html.EditorFor(model => model.UsedBy, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.UsedBy, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("ব‌্যবহারকারীর পদবী")
+                @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("গাড়ি চালকের পি এফ সূচক নং")
+
+                @Html.EditorFor(model => model.DriverPF, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.DriverPF, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-4">
+                @Html.Label("গাড়ি চালকের নাম")
+
+                @Html.EditorFor(model => model.Driver, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Driver, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-md-4">
+                @Html.Label("গাড়ির নম্বর")
+
+                @Html.EditorFor(model => model.RegistrationNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+
+
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("তারিখ")
+
+                @*@Html.EditorFor(model => model.MaintenanceDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })*@
+                @Html.TextBoxFor(m => m.MaintenanceDate, "{0:yyyy-MM-dd}", new { @type = "date" })
+
+                @Html.ValidationMessageFor(model => model.MaintenanceDate, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("বিলের নম্বর")
+                @Html.EditorFor(model => model.BillNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BillNo, "", new { @class = "text-danger" })
+            </div>
+
+
+            <div class="col-md-4">
+                @Html.Label("পার্টসের নাম")
+
+                @Html.DropDownListFor(model => model.MaintenanceParts, new SelectList(ViewBag.MaintenanceList, "value", "text"), "Select List",
+    new { @class = "form-control input-sm", @id = "MaintenanceParts" })
+                @Html.ValidationMessageFor(model => model.MaintenanceParts, "", new { @class = "text-danger" })
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("ইউনিট")
+
+                @Html.EditorFor(model => model.UnitQ, new { htmlAttributes = new { @class = "form-control numFiled", @min = "0" } })
+                @Html.ValidationMessageFor(model => model.UnitQ, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="col-md-4">
+
+                @Html.Label("মূল‌্য")
+
+                @Html.EditorFor(model => model.MaintenanceCost, new { htmlAttributes = new { @class = "form-control numFiled", @id = "MaintenanceCost" } })<span id="words" style="color:red"></span>
+                @Html.ValidationMessageFor(model => model.MaintenanceCost, "", new { @class = "text-danger" })
+            </div>
+            <script>
+                var a = ['', 'one ', 'two ', 'three ', 'four ', 'five ', 'six ', 'seven ', 'eight ', 'nine ', 'ten ', 'eleven ', 'twelve ', 'thirteen ', 'fourteen ', 'fifteen ', 'sixteen ', 'seventeen ', 'eighteen ', 'nineteen '];
+                var b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+                function inWords(num) {
+                    if ((num = num.toString()).length > 9) return 'overflow';
+                    n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+                    if (!n) return; var str = '';
+                    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+                    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+                    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+                    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+                    str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) + 'only ' : '';
+                    return str;
+                }
+
+                document.getElementById('MaintenanceCost').onkeyup = function () {
+                    document.getElementById('words').innerHTML = inWords(document.getElementById('MaintenanceCost').value);
+                };
+
+            </script>
+            <div class="col-md-4">
+
+                @Html.Label("মন্তব‌্য")
+
+                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+
+        <br>
+
+        <br>
+        <div class="row">
+
+
+
+            <div class="col-md-offset-6 col-md-6">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+
+
+
+<script>
+    $(document).ready(function () {
+        debugger
+
+
+
+        $('.numFiled').keypress(function (e) {
+            if (e.which != 46 && e.which != 45 && e.which != 46 &&
+                !(e.which >= 48 && e.which <= 57)) {
+                return false;
+            }
+        });
+
+    });
+
+
+</script>
+
+
+
+

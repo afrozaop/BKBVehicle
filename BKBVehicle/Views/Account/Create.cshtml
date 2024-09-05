@@ -1,0 +1,158 @@
+﻿@model BKBVehicle.Models.ViewModel.UserSignUpModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <h4>Create User</h4>
+        <h4>@TempData["retMsg"]</h4>
+        <hr />
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.userID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userID, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.userID, "", new { @class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userPass, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userPass, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.userPass, "", new { @class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.confirmPass, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.confirmPass, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.confirmPass, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserMobile, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserMobile, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.UserMobile, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.userRole, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.userRole, new SelectList(Model.roleList, "value", "text"), "Select List",
+                new { @class = "form-control input-sm", @id = "userRole" })
+                @Html.ValidationMessageFor(model => model.userRole, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BankName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.BankID, new SelectList(Model.BankList, "value", "text"), "Select List",
+                new { @class = "form-control input-sm", @id = "BankID" })
+                @Html.ValidationMessageFor(model => model.branch_code, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#BankID").change(function () {
+                    debugger;
+                    var bankId = $("#BankID").val();
+                    var userRoleId = '@Session["UserRoleId"]';
+                    $("select[id$=branch_code] > option").remove();
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("getBankBranch")',
+                        dataType: 'json',
+                        data: { bankId: bankId },
+                        success: function (data) {
+                            if (userRoleId == 1) {
+                                $.each(data, function (i, data) {
+                                    $("#branch_code").append('<option value="'
+                                                               + data.Value + '">'
+                                                         + data.Text + '</option>');
+                                });
+                            } else {
+                                $.each(data, function (i, data) {
+                                    if (data.Value == '@Session["BranchCode"]') {
+                                        $("#branch_code").append('<option value="'
+                                                                   + data.Value + '">'
+                                                             + data.Text + '</option>');
+                                    }
+                                });
+                            }
+                        },
+                        error: function (ex) {
+                            alert('Failed.' + ex);
+                        }
+                    });
+                    return false;
+                });
+
+                return false;
+            });
+        </script>
+        <div class="form-group">
+            @Html.LabelFor(model => model.branch_code, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.branch_code, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.branch_code, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.user_status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.user_status, new SelectList(new List<SelectListItem> {
+                                             new SelectListItem { Text = "Active", Value = "A"},
+                                             new SelectListItem { Text = "In-Active", Value = "I"}
+                                         }, "Value", "Text"),
+                        new { @class = "form-control input-sm", @id = "user_status" })
+            @Html.ValidationMessageFor(model => model.user_status, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default btn-primary" />
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default btn-primary" })
+        </div>
+    </div>
+</div>
+}
+
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#BankID").val($("#BankID option:selected").val());
+        $("#branch_code").val($("#branch_code option:selected").val());
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#BankID").select2();
+        $("#branch_code").select2();
+    });
+</script>

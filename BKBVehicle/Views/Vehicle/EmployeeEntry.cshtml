@@ -1,0 +1,161 @@
+﻿@model BKBVehicle.Models.VehicleAppModel.EmployeeInfoViewModel
+
+@{
+    ViewBag.Title = "EmployeeEntry";
+}
+
+<h2 align="middle">Employee Entry</h2>
+<br>
+<h1 align="middle" style="color:red">
+    @TempData["retMsg"]
+</h1>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>EmployeeInfoViewModel</h4>
+            <hr />*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="col-md-3">
+                @Html.Label("PF Number In English")
+                @Html.EditorFor(model => model.PFEN, new { htmlAttributes = new { @class = "form-control", @tabindex = "1" } })
+                @Html.ValidationMessageFor(model => model.PFEN, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("PF Number In Bangla")
+                @Html.EditorFor(model => model.PFBN, new { htmlAttributes = new { @class = "form-control", @tabindex = "2" } })
+                @Html.ValidationMessageFor(model => model.PFBN, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Employee Name In English")
+                @Html.EditorFor(model => model.EmpNameEN, new { htmlAttributes = new { @class = "form-control", @tabindex = "2" } })
+                @Html.ValidationMessageFor(model => model.EmpNameEN, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Employee Name In Bangla")
+                @Html.EditorFor(model => model.EmpNameBN, new { htmlAttributes = new { @class = "form-control", @tabindex = "2" } })
+                @Html.ValidationMessageFor(model => model.EmpNameBN, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                @Html.Label("Designation In English")
+                @Html.DropDownListFor(model => model.Designation, ViewBag.DesignationList as SelectList, "--Select Designation--", new { @class = "form-control", @tabindex = "3" })
+                @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Designation In Bangla")
+                @Html.DropDownListFor(model => model.DesignationBN, ViewBag.DesignationListBN as SelectList, "--Select Designation--", new { @class = "form-control", @tabindex = "3" })
+                @Html.ValidationMessageFor(model => model.DesignationBN, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Date of Birth")
+                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @id = "DOB", @tabindex = "4" } })
+                @*@Html.EditorFor(model => model.DisburseDate, new { htmlAttributes = new { @class = "form-control", @id = "DisburseDate", @tabindex = "3" } })*@
+                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Joining Date")
+                @Html.EditorFor(model => model.JoiningDate, new { htmlAttributes = new { @class = "form-control", @id = "JoiningDate", @tabindex = "5" } })
+                @Html.ValidationMessageFor(model => model.JoiningDate, "", new { @class = "text-danger" })
+            </div>
+
+
+        </div>
+
+        <div class=" row">
+            <div class="col-md-3">
+                @Html.Label("Mobile Number")
+                @Html.EditorFor(model => model.MobileNum, new { htmlAttributes = new { @class = "form-control", @tabindex = "10" } })
+                @Html.ValidationMessageFor(model => model.MobileNum, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Current Working Place")
+                @Html.DropDownListFor(model => model.CWorkPlace, ViewBag.BranchList as SelectList, "--Select Branch--", new { @class = "form-control", @tabindex = "3" })
+                @Html.ValidationMessageFor(model => model.CWorkPlace, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Account Number Of Employee")
+                @Html.EditorFor(model => model.BankAcc, new { htmlAttributes = new { @class = "form-control", @tabindex = "8" } })
+                @Html.ValidationMessageFor(model => model.BankAcc, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="col-md-3">
+                @Html.Label("Gender", htmlAttributes: new { @class = "control-label" })
+
+                @{
+                    List<SelectListItem> genderlist = new List<SelectListItem>();
+                    genderlist.Add(new SelectListItem
+                    {
+                        Text = "Select One",
+                        Value = "",
+                        Selected = true
+                    });
+                    genderlist.Add(new SelectListItem
+                    {
+                        Text = "Male",
+                        Value = "m",
+
+                    });
+                    genderlist.Add(new SelectListItem
+                    {
+                        Text = "Female",
+                        Value = "f",
+
+                    });
+
+                }
+                @Html.DropDownList("Gender", genderlist, new { @class = "form-control", @tabindex = "1" })
+                @*@Html.Label("Gender")
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control", @tabindex = "9" } })
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })*@
+            </div>
+
+
+        </div>
+        <div class=" row">
+            <div class="col-md-3">
+                @Html.Label("NID Number")
+                @Html.EditorFor(model => model.NID, new { htmlAttributes = new { @class = "form-control", @tabindex = "7" } })
+                @Html.ValidationMessageFor(model => model.NID, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.Label("Status")
+                @Html.DropDownListFor(model => model.Status, ViewBag.StatusList as SelectList, "--Select Status--", new { @class = "form-control", @tabindex = "3" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3">
+                @Html.Label("Remarks (If any)")
+                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control", @id = "DateOfDeath", @tabindex = "12" } })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-offset-6 col-md-6">
+                <input type="submit" value="Save" class="btn btn-primary" id="btncal" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#DOB,#JoiningDate,#PRLDate").datepicker({
+            dateFormat: "dd-M-yy"
+        });
+    });
+</script>

@@ -1,0 +1,72 @@
+﻿
+
+@model IEnumerable<BKBVehicle.DataModel.Repair>
+
+
+@{
+    ViewBag.Title = "Repair Info List";
+}
+
+<h2 align="middle">Repair Info List Details</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+<table class="table table-striped table-bordered" id="search" style="width:100%">
+    <thead>
+        <tr>
+
+            <th>Registration No</th>
+
+            <th>Bill No</th>
+            <th> Repair Parts</th>
+            <th> Repair Cost</th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNo)
+                </td>
+                <td>
+                    @if (item.RepairDate != null)
+                    {
+                        @item.RepairDate.Value.ToString("dd-MMM-yyyy")
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RepairParts)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RepairCost)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "RepairInfoEdit", new { id = item.Repairid })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/scripts/jquery-3.5.1.js"></script>
+<script src="~/scripts/jquery.dataTables.min.js"></script>
+<script src="~/scripts/dataTables.bootstrap4.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#search').DataTable({
+            "lengthMenu": [[-1, 25, 50, 100], ["All", 25, 50, 100]]
+
+        });
+    });
+
+</script>
+
+
+
+

@@ -1,0 +1,61 @@
+﻿
+@model BKBVehicle.Models.VehicleAppModel.FuelMaintenanceViewModel
+@{
+    ViewBag.Title = "Summary Repair Report History";
+}
+
+<h2>Summary Report (Maintenance and Fuel) </h2>
+<br>
+
+<style>
+    .iframe-container {
+        overflow: hidden;
+        padding-top: 56.25%;
+        position: relative;
+    }
+
+        .iframe-container iframe {
+            border: 0;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+
+            <div class="col-md-4">
+                @Html.Label("Date From", htmlAttributes: new { @class = "control-label" })*
+                @Html.EditorFor(model => model.dateFrom, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("Date To", htmlAttributes: new { @class = "control-label" })*
+                @Html.EditorFor(model => model.dateTo, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+            <br>
+
+
+            <div class="col-md-4">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+}
+
+<div class="iframe-container">
+    <iframe src='@Url.Content("~/Report/SummaryFuelMaintenance.aspx?dateFrom="+ @Model.dateFrom+ "&dateTo="+ @Model.dateTo)' frameborder="0" scrolling="yes" height="1000"></iframe>
+
+</div>
+
+
+

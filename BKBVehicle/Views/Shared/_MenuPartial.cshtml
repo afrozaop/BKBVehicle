@@ -1,0 +1,21 @@
+﻿@if (Session["MenuMaster"] != null)
+{
+
+    var MenuMaster = (List<BKBVehicle.Models.ViewModel.MenuModels>)Session["MenuMaster"];
+    var groupByMenu = MenuMaster.Where(x=> x.MenuStatus.Equals("Y")).GroupBy(x => x.MainMenuName).ToList();
+
+    foreach (var MenuList in groupByMenu)
+    {
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" style="font-weight:bold;font-size:medium" data-toggle="dropdown" href="#">@MenuList.Key<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                @foreach (var SubMenuList in MenuList)
+                {
+                    <li style="font-weight:bold;font-size:medium;">@Html.ActionLink(SubMenuList.SubMenuName, SubMenuList.ActionName, SubMenuList.ControllerName)</li>
+                }
+            </ul>
+        </li>
+
+    }
+}

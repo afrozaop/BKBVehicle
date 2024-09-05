@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "MainView";
+}
+
+<h2>MainView</h2>
+
+
+
+
+---
+@model YourNamespace.MainViewModel
+
+<!-- Include Table1 Partial View -->
+<div id="table1">
+    @Html.Partial("_Table1Partial", Model.Table1Data)
+</div>
+
+<!-- Include Table2 Partial View -->
+<div id="table2">
+    @Html.Partial("_Table2Partial", Model.Table2Data)
+</div>

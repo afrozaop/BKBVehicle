@@ -1,0 +1,64 @@
+﻿
+@model IEnumerable<BKBVehicle.DataModel.Car_Info>
+@{
+    ViewBag.Title = "Vehicle Info List";
+}
+
+<h2 align="middle">Vehicle Info List Details</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+<table class="table table-striped table-bordered" id="search" style="width:100%">
+    <thead>
+        <tr>
+            <th>Office Name</th>
+            <th>Registration No</th>
+         
+            <th>Vehicle Type</th>
+            <th>Production Year</th>
+      
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNo)
+                </td>
+                
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductionYear)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "VehicleinfoEdit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "CarDetails", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/scripts/jquery-3.5.1.js"></script>
+<script src="~/scripts/jquery.dataTables.min.js"></script>
+<script src="~/scripts/dataTables.bootstrap4.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#search').DataTable({
+            "lengthMenu": [[-1, 25, 50, 100], ["All", 25, 50, 100]]
+
+        });
+    });
+
+</script>
+
+

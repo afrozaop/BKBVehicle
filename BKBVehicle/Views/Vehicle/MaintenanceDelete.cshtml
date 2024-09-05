@@ -1,0 +1,43 @@
+﻿
+
+@model BKBVehicle.DataModel.Maintenance
+@{
+    ViewBag.Title = "Fuel Info Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    a {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<div class="col-md-12">
+    <h3>Are you sure you want to delete this?</h3>
+</div>
+<div class="col-md-offset-2 col-md-10">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillNo)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @*@Html.ActionLink("Back to Home", "Welcome", "Home")*@
+        </div>
+    }
+</div>

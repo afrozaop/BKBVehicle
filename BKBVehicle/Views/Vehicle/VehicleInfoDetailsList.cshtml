@@ -1,0 +1,74 @@
+﻿
+@model IEnumerable<BKBVehicle.DataModel.Car_Details>
+@{
+    ViewBag.Title = "VehicleInfoDetailsList";
+}
+
+<h2 align="middle">Vehicle Info Details List</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+<table class="table table-striped table-bordered" id="search" style="width:100%">
+    <thead>
+        <tr>
+            
+            <th>Registration No</th>
+
+            <th>Tax Token</th>
+            <th>Fitness</th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegistrationNo)
+                </td>
+
+
+                <td>
+                    @if (item.TaxToken != null)
+                    {
+                        @item.TaxToken.Value.ToString("dd-MMM-yyyy")
+                    }
+
+                   
+                </td>
+                <td>
+                    @if (item.Fitness != null)
+                    {
+                        @item.Fitness.Value.ToString("dd-MMM-yyyy")
+                    }
+
+                   
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "VehicleInfoDetailsEdit", new { id = item.id })
+                    @*@Html.ActionLink("Details", "Details", new { id = item.id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/scripts/jquery-3.5.1.js"></script>
+<script src="~/scripts/jquery.dataTables.min.js"></script>
+<script src="~/scripts/dataTables.bootstrap4.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('#search').DataTable({
+            "lengthMenu": [[-1, 25, 50, 100], ["All", 25, 50, 100]]
+
+        });
+    });
+
+</script>
+
+
+
+

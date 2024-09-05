@@ -1,0 +1,18 @@
+﻿
+
+@model BKBVehicle.Models.VehicleAppModel.MaintenanceViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h4>Add Maintenance Parts</h4>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+<p>
+    @Html.ActionLink("Add New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+
+
+

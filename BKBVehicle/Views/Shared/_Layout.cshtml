@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Images/BKB-Logo.ico" />
+    <title>BKB Vehicle</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/datatables.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/scripts/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/datatables.js"></script>
+    <script src="~/scripts/datatables.min.js"></script>
+
+    <script src="~/scripts/ExcelEport.js"></script>
+    <script src="~/scripts/table.js"></script>
+    <script src="~/scripts/jclock.js"></script>
+    <script src="~/scripts/ConvertToPDF.js"></script>
+    <script src="~/scripts/datepick.js"></script>
+
+    <style>
+        .field_set {
+            border-color: #F00;
+            border-style: solid;
+        }
+
+        .scheduler-border {
+            border-color: #F00;
+            border-style: solid;
+        }
+
+        .scheduler-border2 {
+            color: coral;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba( 255, 255, 255, .8 ) url('../../Images/ajax-loader.gif') 50% 50% no-repeat;
+        }
+
+        /* When the body has the loading class, we turn
+        the scrollbar off with overflow:hidden */
+        body.loading .modal {
+            overflow: hidden;
+        }
+
+        /* Anytime the body has the loading class, our
+        modal element will be visible */
+        body.loading .modal {
+            display: block;
+        }
+
+        td {
+            text-align: center;
+            background-color: #eac9c9;
+        }
+
+        th {
+            text-align: center;
+        }
+
+        table th {
+            width: auto !important;
+        }
+
+        .text-center {
+            background: #eac9c9;
+            overflow: hidden;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .padtp30 {
+            padding-top: 30px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @if (Session["LoginCredentials"] != null)
+                {
+                    @Html.ActionLink("Vehicle Management", "Welcome", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <img src="~/Images/logo-removebg-preview.png" class="img-center" height="50" width="50" />
+                }
+                else
+                {
+                    @Html.ActionLink("Vehicle Management", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                    <img src="~/Images/logo-removebg-preview.png" class="img-center" height="50" width="50" />
+                }
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @Html.Partial("_MenuPartial")
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (Session["LoginCredentials"] != null)
+                    {
+                        var loginDetails = (BKBVehicle.Models.ViewModel.LoginModels)Session["LoginCredentials"];
+                        <li style="color:green;font-weight:bold;">@loginDetails.userName<br />@loginDetails.UserMobile</li>
+                        <li>@Html.ActionLink("Logout", "LogOff", "Login")</li>
+                        <li><span class="glyphicon-log-out"></span></li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                        <li><span class="glyphicon-log-out"></span></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    @if (Session["LoginCredentials"] != null)
+    {
+        <div class="container" style="background: #9bc5c3 ">
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    Division: @Session["Division"]
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="clock">
+                        <div id="Date"></div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    Office: @Session["BranchCode"] - @Session["Branch"]
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 text-center">
+                    Region: @Session["Region"]
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="clock">
+                        <div>
+                            <b id="hours"></b>
+                            <b id="point">:</b>
+                            <b id="min"></b>
+                            <b id="point">:</b>
+                            <b id="sec"></b>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    User ID: @Session["UserID"]
+                </div>
+            </div>
+        </div>
+    }
+    <div class="container body-content" style="background: #c7c0c1 ">
+        @RenderBody()
+        @RenderSection("scripts", required: false)
+        <hr />
+        <footer>
+            <p>&copy;@DateTime.Now.Year BKB Vehicle Management Portal. Developed By ICT Operation Dept. BKB</p>
+        </footer>
+    </div>
+</body>
+</html>

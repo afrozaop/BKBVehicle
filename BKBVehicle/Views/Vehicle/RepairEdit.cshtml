@@ -1,0 +1,196 @@
+﻿@model BKBVehicle.Models.VehicleAppModel.RepairViewModel
+
+@{
+    ViewBag.Title = "RepairInfoEdit";
+}
+
+
+<h2 align="middle">Repair Information Details</h2>
+<br>
+<h2 align="middle" style="color: red">@TempData["ShowSms"]</h2>
+<h4 style="color:red">@TempData["retMsg"]</h4>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @Html.HiddenFor(model => model.rv.Repairid, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Repairid, new { htmlAttributes = new { @class = "form-control input-sm" } })
+
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("ব‌্যবহারকারীর পি এফ সূচক নং")
+            @Html.EditorFor(model => model.rv.UsedByPF, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.UsedByPF, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.Label("ব‌্যবহারকারীর নাম")
+            @Html.EditorFor(model => model.rv.UsedBy, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.UsedBy, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.Label("ব‌্যবহারকারীর পদবী")
+            @Html.EditorFor(model => model.rv.Degination, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Degination, "", new { @class = "text-danger" })
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            @Html.Label("গাড়ি চালকের পি এফ সূচক নং")
+
+            @Html.EditorFor(model => model.rv.DriverPF, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.DriverPF, "", new { @class = "text-danger" })
+
+        </div>
+        <div class="col-md-4">
+            @Html.Label("গাড়ি চালকের নাম")
+
+            @Html.EditorFor(model => model.rv.Driver, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Driver, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="col-md-4">
+            @Html.Label("গাড়ির নম্বর")
+
+            @Html.EditorFor(model => model.rv.RegistrationNo, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            @Html.Label("তারিখ")
+
+            @Html.EditorFor(model => model.rv.RepairDate, new { htmlAttributes = new { @class = "form-control ", @id = "RepairDate" } })
+
+            @Html.ValidationMessageFor(model => model.rv.RepairDate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-4">
+            @Html.Label("বিলের নম্বর")
+            @Html.EditorFor(model => model.rv.BillNo, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BillNo, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-4">
+            @Html.Label("প্রতিষ্ঠানের নাম")
+            @Html.DropDownListFor(model => model.rv.OrganizationName, new SelectList(ViewBag.OrganizationList, "value", "text"), "Select List",
+new { @class = "form-control input-sm", @id = "OrganizationName" })
+
+            @Html.ValidationMessageFor(model => model.OrganizationName, "", new { @class = "text-danger" })
+
+
+        </div>
+
+    </div>
+   
+    <div class="row table-responsive">
+        <table class="table" id="unadjustedLoanTable">
+            @if (Model.rdvm != null)
+            {
+                <tr style="text-align:center">
+                    <th>
+                        SL
+                    </th>
+                    <th>
+                        Repair Parts
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Cost
+                    </th>
+
+                </tr>
+                for (int i = 0; i < Model.rdvm.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @(@i + (int)1)
+                            @Html.HiddenFor(model => model.rdvm[i].Repairid, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.HiddenFor(model => model.rdvm[i].id, new { htmlAttributes = new { @class = "form-control input-sm", @id = "outstandingAmount" } })
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.rdvm[i].RepairParts, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.rdvm[i].Quantity, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.rdvm[i].RepairCost, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        </td>
+
+                    </tr>
+                }
+            }
+        </table>
+
+    </div>
+
+    <div class="col-md-offset-6 col-md-6">
+
+        @Html.ActionLink("Add More Info", "AddMoreInfo", new { id = Model.rv.Repairid }, htmlAttributes: new { @class = "btn btn-default btn-primary", @style = "background-color: #08899B;" })
+
+    </div>
+
+    <div class="row">
+
+
+
+        <div class="col-md-offset-6 col-md-6">
+            <input type="submit" value="Update" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/scripts/select2.min.js"></script>
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+
+
+
+<script>
+    $(document).ready(function () {
+        debugger
+
+
+
+        $('.numFiled').keypress(function (e) {
+            if (e.which != 46 && e.which != 45 && e.which != 46 &&
+                !(e.which >= 48 && e.which <= 57)) {
+                return false;
+            }
+        });
+
+    });
+
+
+</script>
+
+
+<script>
+    $(function () {
+        $("#RepairDate").datepicker();
+
+    });
+</script>
+

@@ -1,0 +1,72 @@
+﻿
+@model BKBVehicle.Models.VehicleAppModel.RepairViewModel
+@{
+    ViewBag.Title = "Repair Report History";
+}
+
+<h2>Repair Report</h2>
+<br>
+
+<style>
+    .iframe-container {
+        overflow: hidden;
+        padding-top: 56.25%;
+        position: relative;
+    }
+
+        .iframe-container iframe {
+            border: 0;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-4">
+                @Html.Label("Registration Number")
+                @Html.DropDownListFor(model => model.RegistrationNo, new SelectList(ViewBag.RegList, "value", "text"), "Select List",
+           new { @class = "form-control input-sm", @id = "RegistrationNo" })
+                @Html.ValidationMessageFor(model => model.RegistrationNo, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4">
+                @Html.Label("Date From", htmlAttributes: new { @class = "control-label" })*
+                @Html.EditorFor(model => model.dateFrom, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+            <div class="col-md-4">
+                @Html.Label("Date To", htmlAttributes: new { @class = "control-label" })*
+                @Html.EditorFor(model => model.dateTo, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+            </div>
+            <br>
+
+
+            <div class="col-md-4">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+}
+
+<div class="iframe-container">
+    @*<iframe src='@Url.Content("~/ReportFile/CMSME.aspx?dateFrom="+ @Model.dateFrom+ "&dateTo="+ @Model.dateTo)' frameborder="0"></iframe>*@
+    <iframe @*style="background-color: blue"*@ src='@Url.Content("~/Report/RepairReport.aspx?RegistrationNo="+ @Model.RegistrationNo+"&dateFrom="+ @Model.dateFrom+ "&dateTo="+ @Model.dateTo)' frameborder="0" scrolling="yes" height="1000"></iframe>
+
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#RegistrationNo").select2();
+    });
+</script>

@@ -1,0 +1,108 @@
+﻿@model BKBVehicle.Models.VehicleAppModel.RepairViewModel
+
+@{
+    ViewBag.Title = "ViewDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h4 style="font-weight:bold;color:red;">@TempData["retMsg"]</h4>
+@using (Html.BeginForm("approvalRepair", "Vehicle", FormMethod.Post))
+{
+  
+    <table class="table">
+        <tr>
+            @Html.HiddenFor(model => model.id)
+            <th>@Html.DisplayNameFor(model => model.rv.RegistrationNo)</th>
+            <td>@Html.DisplayFor(model => model.rv.RegistrationNo)</td>
+            <th> @Html.DisplayNameFor(model => model.rv.OrganizationName)</th>
+            <td>@Html.DisplayFor(model => model.rv.OrganizationName)</td>
+            <th>@Html.DisplayNameFor(model => model.rv.BillNo)</th>
+            <td>@Html.DisplayFor(model => model.rv.BillNo)</td>
+        </tr>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.rv.RepairDate)</th>
+
+            <td>@Convert.ToDateTime(Model.rv.RepairDate).ToString("dd-MM-yyyy")</td>
+
+
+
+            @*<td>
+                @if (Model.rv.RepairDate != null)
+                {
+                    @Model.rv.RepairDate.Value.ToString("dd-MMM-yyyy")
+                }
+
+
+            </td>*@
+
+
+
+
+            <th> @Html.DisplayNameFor(model => model.rv.UsedBy)</th>
+            <td>@Html.DisplayFor(model => model.rv.UsedBy)</td>
+            <th> @Html.DisplayNameFor(model => model.rv.Driver)</th>
+            <td>@Html.DisplayFor(model => model.rv.Driver)</td>
+
+        </tr>
+
+    </table>
+    <div class="row table-responsive">
+        <table class="table" id="unadjustedLoanTable">
+            @if (Model.rdvm != null)
+            {
+                <tr style="text-align:center">
+                    <th>
+                        SL
+                    </th>
+                    <th>
+                        Repair Parts
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Cost
+                    </th>
+
+                </tr>
+                for (int i = 0; i < Model.rdvm.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @(@i + (int)1)
+                            @Html.HiddenFor(model => model.rdvm[i].Repairid, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.HiddenFor(model => model.rdvm[i].id, new { htmlAttributes = new { @class = "form-control input-sm", @id = "outstandingAmount" } })
+                        </td>
+
+                        <td>
+                            @Html.EditorFor(model => model.rdvm[i].RepairParts, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.rdvm[i].Quantity, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        </td>
+                        <td>
+                            @Html.EditorFor(model => model.rdvm[i].RepairCost, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                        </td>
+
+                    </tr>
+                }
+            }
+        </table>
+
+        <div class="row">
+            <div class="col-xs-5">
+            </div>
+
+            <div class="col-xs-5">
+                @if ((@Session["UserRoleId"]).ToString() == "1" || (@Session["UserRoleId"]).ToString() == "10")
+                {
+                    <input type="submit" id="btnApprove" name="btn" value="Approve" class="btn btn-success" />
+
+                }
+
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+    </div>
+}
